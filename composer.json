@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Itmedia\\DomainEvents\\": "src"
+      "Itmedia\\DomainEvents\\": ""
     }
   }
 }
