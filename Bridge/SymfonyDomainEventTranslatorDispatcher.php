@@ -8,6 +8,7 @@ namespace Itmedia\DomainEvents\Bridge;
 
 use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
@@ -18,12 +19,26 @@ class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
     private $dispatcher;
 
     /**
-     * SymfonyEventTranslatorDispatcher constructor.
-     * @param EventDispatcherInterface $dispatcher
+     * @var LoggerInterface
      */
-    public function __construct(EventDispatcherInterface $dispatcher)
+    private $logger;
+
+    /**
+     * @var boolean
+     */
+    private $debug;
+
+    /**
+     * SymfonyDomainEventTranslatorDispatcher constructor.
+     * @param EventDispatcherInterface $dispatcher
+     * @param LoggerInterface $logger
+     * @param bool $debug
+     */
+    public function __construct(EventDispatcherInterface $dispatcher, LoggerInterface $logger = null, $debug = false)
     {
         $this->dispatcher = $dispatcher;
+        $this->logger = $logger;
+        $this->debug = $debug;
     }
 
 
@@ -31,7 +46,14 @@ class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
     {
         $events = $publisher->releaseEvents();
         foreach ($events as $event) {
+
             $this->dispatcher->dispatch($event->getName(), $event);
+
+            if ($this->debug && $this->logger) {
+                $this->logger->info('Publish domain event "{event}"', [
+                    'event' => $event->getName()
+                ]);
+            }
         }
     }
 }
