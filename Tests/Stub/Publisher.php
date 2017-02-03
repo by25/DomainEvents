@@ -19,5 +19,4 @@ class Publisher implements DomainEventPublisher
     {
         $this->pushEvent(new DefaultDomainEvent($nameEvent, null));
     }
-
 }

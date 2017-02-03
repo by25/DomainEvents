@@ -26,5 +26,4 @@ class Dispatcher implements DomainEventDispatcher
     {
         return $this->events;
     }
-
 }
