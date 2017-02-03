@@ -8,6 +8,9 @@ namespace Itmedia\DomainEvents\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
+/**
+ * Abstract DomainEvent
+ */
 abstract class DomainEvent extends Event
 {
     /**

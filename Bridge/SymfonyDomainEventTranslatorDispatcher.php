@@ -6,7 +6,7 @@
 
 namespace Itmedia\DomainEvents\Bridge;
 
-use Itmedia\DomainEvents\DomainEventDispatcher;
+use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 

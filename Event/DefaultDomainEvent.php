@@ -6,6 +6,10 @@
 
 namespace Itmedia\DomainEvents\Event;
 
+/**
+ * Default Domain Event
+ * Helper class
+ */
 class DefaultDomainEvent extends DomainEvent
 {
     /**

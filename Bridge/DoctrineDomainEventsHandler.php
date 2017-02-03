@@ -6,8 +6,8 @@
 
 namespace Itmedia\DomainEvents\Bridge;
 
-use Itmedia\DomainEvents\DomainEventDispatcher;
 use Doctrine\ORM\Event\PostFlushEventArgs;
+use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 
 class DoctrineDomainEventsHandler

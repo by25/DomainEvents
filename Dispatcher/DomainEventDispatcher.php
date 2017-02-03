@@ -4,7 +4,7 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
-namespace Itmedia\DomainEvents;
+namespace Itmedia\DomainEvents\Dispatcher;
 
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 
