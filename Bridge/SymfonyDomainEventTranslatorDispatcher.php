@@ -46,13 +46,13 @@ class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
     {
         $events = $publisher->releaseEvents();
         foreach ($events as $event) {
-            $this->dispatcher->dispatch($event->getName(), $event);
-
             if ($this->debug && $this->logger) {
                 $this->logger->info('Pushed domain event "{event}"', [
                     'event' => $event->getName()
                 ]);
             }
+
+            $this->dispatcher->dispatch($event->getName(), $event);
         }
     }
 }
