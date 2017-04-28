@@ -97,6 +97,7 @@ services:
         arguments: ["@app.domain_events_translator_handler"]
         tags:
             - { name: doctrine.event_listener, event: postFlush }
+            - { name: doctrine.event_listener, event: preFlush }
 
 
 ```
