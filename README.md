@@ -86,7 +86,8 @@ Translation domain-event to symfony events on Doctrine postFlush() action:
 
 services:
 
-    app.domain_events_translator_handler:
+    # Translate domain event to symfony events
+    app.domain_events_dispatcher:
         class: Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher
         arguments: ["@event_dispatcher", "@monolog.logger", "%kernel.debug%"]
 
@@ -94,7 +95,7 @@ services:
     # Handle domain-events
     app.doctrine_handler:
         class: Itmedia\DomainEvents\Bridge\DoctrineDomainEventsHandler
-        arguments: ["@app.domain_events_translator_handler"]
+        arguments: ["@app.domain_events_dispatcher"]
         tags:
             - { name: doctrine.event_listener, event: postFlush }
             - { name: doctrine.event_listener, event: preFlush }
