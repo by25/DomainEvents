@@ -4,6 +4,8 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
+declare(strict_types=1);
+
 namespace Itmedia\DomainEvents\Publisher;
 
 use Itmedia\DomainEvents\Event\DomainEvent;
@@ -16,5 +18,5 @@ interface DomainEventPublisher
      *
      * @return DomainEvent[]
      */
-    public function releaseEvents();
+    public function releaseEvents(): array;
 }

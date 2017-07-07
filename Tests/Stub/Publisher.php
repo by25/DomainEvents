@@ -6,7 +6,7 @@
 
 namespace Itmedia\DomainEvents\Tests\Stub;
 
-use Itmedia\DomainEvents\Event\DefaultDomainEvent;
+use Itmedia\DomainEvents\Event\DomainEvent;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisherTrait;
 
@@ -15,8 +15,15 @@ class Publisher implements DomainEventPublisher
     use DomainEventPublisherTrait;
 
 
-    public function generateEvent($nameEvent)
+    public function onSingleEvent(DomainEvent $domainEvent)
     {
-        $this->pushEvent(new DefaultDomainEvent($nameEvent, null));
+        $this->pushSingleEvent($domainEvent);
     }
+
+
+    public function onEvent(DomainEvent $domainEvent)
+    {
+        $this->pushEvent($domainEvent);
+    }
+
 }

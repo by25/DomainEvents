@@ -4,6 +4,8 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
+declare(strict_types=1);
+
 namespace Itmedia\DomainEvents\Event;
 
 use Symfony\Component\EventDispatcher\Event;
@@ -18,5 +20,5 @@ abstract class DomainEvent extends Event
      *
      * @return string
      */
-    abstract public function getName();
+    abstract public function getName(): string;
 }

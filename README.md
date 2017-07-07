@@ -65,6 +65,10 @@ class Account implements DomainEventPublisher
         //...
 
         $account->pushEvent(new AccountRegistrationEvent($account));
+        
+        // Checked single event
+        $account->pushSingleEvent(new MyEvent($account));
+        $account->pushSingleEvent(new MyEvent($account));
 
         return $account;
     }
@@ -80,22 +84,20 @@ Use Doctrine ORM and Symfony events
 
 Translation domain-event to symfony events on Doctrine postFlush() action:
 
-```yml
+```yaml
 
 # services.yml
 
 services:
 
     # Translate domain event to symfony events
-    app.domain_events_dispatcher:
-        class: Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher
+    Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher:
         arguments: ["@event_dispatcher", "@monolog.logger", "%kernel.debug%"]
 
 
     # Handle domain-events
-    app.doctrine_handler:
-        class: Itmedia\DomainEvents\Bridge\DoctrineDomainEventsHandler
-        arguments: ["@app.domain_events_dispatcher"]
+    Itmedia\DomainEvents\Bridge\DoctrineDomainEventsHandler:
+        arguments: ["@Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher"]
         tags:
             - { name: doctrine.event_listener, event: postFlush }
             - { name: doctrine.event_listener, event: preFlush }

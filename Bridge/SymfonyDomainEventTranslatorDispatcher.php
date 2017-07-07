@@ -4,6 +4,8 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
+declare(strict_types=1);
+
 namespace Itmedia\DomainEvents\Bridge;
 
 use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;

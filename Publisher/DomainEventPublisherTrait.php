@@ -4,6 +4,8 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
+declare(strict_types=1);
+
 namespace Itmedia\DomainEvents\Publisher;
 
 use Itmedia\DomainEvents\Event\DomainEvent;
@@ -11,7 +13,7 @@ use Itmedia\DomainEvents\Event\DomainEvent;
 trait DomainEventPublisherTrait
 {
     /**
-     * @var array
+     * @var DomainEvent[]
      */
     private $domainEvents = [];
 
@@ -25,12 +27,29 @@ trait DomainEventPublisherTrait
         $this->domainEvents[] = $event;
     }
 
+
+    /**
+     * Add single event
+     *
+     * @param DomainEvent $event
+     */
+    protected function pushSingleEvent(DomainEvent $event)
+    {
+        foreach ($this->domainEvents as $domainEvent) {
+            if ($domainEvent->getName() === $event->getName()) {
+                return;
+            }
+        }
+
+        $this->pushEvent($event);
+    }
+
     /**
      * Return published domain events
      *
      * @return DomainEvent[]
      */
-    public function releaseEvents()
+    public function releaseEvents(): array
     {
         $events = $this->domainEvents;
         $this->domainEvents = [];
