@@ -4,9 +4,12 @@
  * (c) itmedia.by <info@itmedia.by>
  */
 
+declare(strict_types=1);
+
 namespace Itmedia\DomainEvents\Bridge;
 
 use Doctrine\ORM\Event\PostFlushEventArgs;
+use Doctrine\ORM\Event\PreFlushEventArgs;
 use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 
@@ -17,6 +20,9 @@ class DoctrineDomainEventsHandler
      */
     private $domainDispatcher;
 
+
+    private $removedEntities = [];
+
     /**
      * DoctrineDomainEventsHandler constructor.
      *
@@ -25,6 +31,13 @@ class DoctrineDomainEventsHandler
     public function __construct(DomainEventDispatcher $domainDispatcher)
     {
         $this->domainDispatcher = $domainDispatcher;
+    }
+
+
+    public function preFlush(PreFlushEventArgs $args)
+    {
+        $em = $args->getEntityManager();
+        $this->removedEntities = $em->getUnitOfWork()->getScheduledEntityDeletions();
     }
 
 
@@ -44,6 +57,12 @@ class DoctrineDomainEventsHandler
                 if ($entity instanceof DomainEventPublisher) {
                     $this->domainDispatcher->dispatch($entity);
                 }
+            }
+        }
+
+        foreach ($this->removedEntities as $entity) {
+            if ($entity instanceof DomainEventPublisher) {
+                $this->domainDispatcher->dispatch($entity);
             }
         }
     }

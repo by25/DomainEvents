@@ -2,7 +2,7 @@
   "name": "itmedia/domain-events",
   "type": "library",
   "description": "Domain events implementation",
-  "homepage": "https://github.com/by25/CommandBusBundle",
+  "homepage": "https://github.com/by25/DomainEvents",
   "license": "MIT",
   "authors": [
     {
