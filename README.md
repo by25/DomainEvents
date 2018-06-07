@@ -92,12 +92,12 @@ services:
 
     # Translate domain event to symfony events
     Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher:
-        arguments: ["@event_dispatcher", "@monolog.logger", "%kernel.debug%"]
+        arguments: ['@event_dispatcher', '@logger', '%kernel.debug%']
 
 
     # Handle domain-events
     Itmedia\DomainEvents\Bridge\DoctrineDomainEventsHandler:
-        arguments: ["@Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher"]
+        arguments: ['@Itmedia\DomainEvents\Bridge\SymfonyDomainEventTranslatorDispatcher']
         tags:
             - { name: doctrine.event_listener, event: postFlush }
             - { name: doctrine.event_listener, event: preFlush }

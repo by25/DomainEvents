@@ -12,5 +12,5 @@ use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 
 interface DomainEventDispatcher
 {
-    public function dispatch(DomainEventPublisher $publisher);
+    public function dispatch(DomainEventPublisher $publisher): void;
 }

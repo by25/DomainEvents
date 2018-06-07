@@ -34,7 +34,7 @@ class DoctrineDomainEventsHandler
     }
 
 
-    public function preFlush(PreFlushEventArgs $args)
+    public function preFlush(PreFlushEventArgs $args): void
     {
         $em = $args->getEntityManager();
         $this->removedEntities = $em->getUnitOfWork()->getScheduledEntityDeletions();
@@ -46,7 +46,7 @@ class DoctrineDomainEventsHandler
      *
      * @param PostFlushEventArgs $args
      */
-    public function postFlush(PostFlushEventArgs $args)
+    public function postFlush(PostFlushEventArgs $args): void
     {
         $em = $args->getEntityManager();
 

@@ -44,7 +44,7 @@ class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
     }
 
 
-    public function dispatch(DomainEventPublisher $publisher)
+    public function dispatch(DomainEventPublisher $publisher): void
     {
         $events = $publisher->releaseEvents();
         foreach ($events as $event) {

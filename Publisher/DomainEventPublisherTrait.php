@@ -22,7 +22,7 @@ trait DomainEventPublisherTrait
      *
      * @param DomainEvent $event
      */
-    protected function pushEvent(DomainEvent $event)
+    protected function pushEvent(DomainEvent $event): void
     {
         $this->domainEvents[] = $event;
     }
@@ -33,7 +33,7 @@ trait DomainEventPublisherTrait
      *
      * @param DomainEvent $event
      */
-    protected function pushSingleEvent(DomainEvent $event)
+    protected function pushSingleEvent(DomainEvent $event):void
     {
         foreach ($this->domainEvents as $domainEvent) {
             if ($domainEvent->getName() === $event->getName()) {
