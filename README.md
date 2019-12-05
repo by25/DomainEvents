@@ -20,7 +20,7 @@ DomainEvent:
 
 use Itmedia\DomainEvents\Event\DomainEvent;
 
-class AccountRegistrationEvent extends DomainEvent
+class AccountRegistrationEvent implements DomainEvent
 {
     /**
      * @var Account
@@ -34,7 +34,7 @@ class AccountRegistrationEvent extends DomainEvent
     }
 
 
-    public function getName()
+    public function getName():string
     {
         return 'account_register';
     }
