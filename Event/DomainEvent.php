@@ -8,17 +8,11 @@ declare(strict_types=1);
 
 namespace Itmedia\DomainEvents\Event;
 
-use Symfony\Component\EventDispatcher\Event;
-
-/**
- * Abstract DomainEvent
- */
-abstract class DomainEvent extends Event
+interface DomainEvent
 {
     /**
      * Domain event name
-     *
      * @return string
      */
-    abstract public function getName(): string;
+    public function getName(): string;
 }

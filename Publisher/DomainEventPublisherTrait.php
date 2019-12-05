@@ -46,7 +46,6 @@ trait DomainEventPublisherTrait
 
     /**
      * Return published domain events
-     *
      * @return DomainEvent[]
      */
     public function releaseEvents(): array

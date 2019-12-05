@@ -6,14 +6,14 @@
 
 namespace Itmedia\DomainEvents\Tests\Stub;
 
-use Itmedia\DomainEvents\DomainEventDispatcher;
+use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 
 class Dispatcher implements DomainEventDispatcher
 {
     private $events = [];
 
-    public function dispatch(DomainEventPublisher $publisher)
+    public function dispatch(DomainEventPublisher $publisher): void
     {
         $events = $publisher->releaseEvents();
         $this->events = array_merge($this->events, $events);

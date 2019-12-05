@@ -6,7 +6,7 @@ namespace Itmedia\DomainEvents\Tests\Stub;
 
 use Itmedia\DomainEvents\Event\DomainEvent;
 
-class Event extends DomainEvent
+class Event implements DomainEvent
 {
 
 

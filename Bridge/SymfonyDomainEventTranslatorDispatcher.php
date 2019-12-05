@@ -11,7 +11,8 @@ namespace Itmedia\DomainEvents\Bridge;
 use Itmedia\DomainEvents\Dispatcher\DomainEventDispatcher;
 use Itmedia\DomainEvents\Publisher\DomainEventPublisher;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+
 
 class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
 {
@@ -54,7 +55,7 @@ class SymfonyDomainEventTranslatorDispatcher implements DomainEventDispatcher
                 ]);
             }
 
-            $this->dispatcher->dispatch($event->getName(), $event);
+            $this->dispatcher->dispatch($event, $event->getName());
         }
     }
 }
